@@ -73,7 +73,19 @@ class ClientController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // abort_unless(\Gate::allows('career_edit'), 403);
+
+        $client = Client::findOrFail($id);
+        $client->update([
+            "date_of_birth" => $request->date_of_birth,
+            "gender" => $request->gender,
+            "residence_location" => $request->residence_location,
+            "profession" => $request->profession,
+            "school" => $request->school,
+            "bio" => $request->bio
+            ]);
+
+        return redirect()->back();
     }
 
     /**

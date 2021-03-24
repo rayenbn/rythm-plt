@@ -1,7 +1,7 @@
 <?php
 
 // Route::redirect('/', '/login');
-// Route::redirect('/dashboard', '/admin/dashboard');
+Route::redirect('/dashboard', '/admin/dashboard');
 
 
 Route::group(['prefix'=> 'admin'], function () {

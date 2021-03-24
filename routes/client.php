@@ -27,5 +27,7 @@ Route::group([
     Route::post('startup/profile/create', 'StartupsController@createStartup')->name('startup.fastcreate');
     
     Route::get('/{id}', 'ClientController@show')->name('user-profile');
+    Route::put('profile/{client}/personal-info/update', 'ClientController@update')->name('user-profile.edit');
+
 
 });

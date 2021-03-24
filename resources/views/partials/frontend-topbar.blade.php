@@ -60,7 +60,7 @@
     <div style="margin: auto"></div>
     <div class="header-part-right">
         <!-- <a href="#" class="btn btn-raised btn-raised-primary m-1" >Create Your Startup</a> -->
-        <button class="btn btn-raised btn-raised-primary m-1" type="button" data-toggle="modal" data-target="#exampleModal">
+        <button class="btn btn-raised btn-raised-primary m-1 d-none d-sm-inline-block" type="button" data-toggle="modal" data-target="#exampleModal">
         Create Your Startup
         </button>
         <!-- Full screen toggle -->
@@ -156,7 +156,10 @@
                     </div>
                     <a class="dropdown-item" href="{{route('client.user-profile', auth()->user()->id)}}">My profile</a>
                     <a class="dropdown-item">Account settings</a>
-                    <a class="dropdown-item">Billing history</a>
+                    <!-- <a class="dropdown-item">Billing history</a> -->
+                    <a class="dropdown-item d-inline-block d-sm-none" type="button" data-toggle="modal" data-target="#exampleModal">
+                    Create Your Startup
+                    </a>
                     <a class="dropdown-item" href="{{route('client.logout')}}">Sign out</a>
                 </div>
             </div>
@@ -187,22 +190,10 @@
                     <div class="col-md-12 form-group mb-3">
                         <label for="industry">industry</label>
                         <select class="form-control form-control-rounded" name="industry" id="industry">
-                            <option value="Agriculture">Agriculture</option>
-                            <option value="Artificial Intelligence">Artificial Intelligence</option>
-                            <option value="Business Tools">Business Tools</option>
-                            <option value="Digital Marketing">Digital Marketing</option>
-                            <option value="Edutech">Edutech</option>
-                            <option value="Fintech">Fintech</option>
-                            <option value="Food / Beverage">Food / Beverage</option>
-                            <option value="Hardware">Hardware</option>
-                            <option value="Healthcare">Healthcare</option>
-                            <option value="Lifestyle">Lifestyle</option>
-                            <option value="Logistics">Logistics</option>
-                            <option value="Real Estate">Real Estate</option>
-                            <option value="Software">Software</option>
-                            <option value="Travel / Tourism">Travel / Tourism</option>
-                            <option value="Venture Capital">Venture Capital</option>
-                            <option value="Other">Other</option>
+                            <option value="" selected>Choose</option>
+                            @foreach (Config::get('constants.industries') as $ind => $industry)
+                            <option value="{{$industry}}">{{$industry}}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>

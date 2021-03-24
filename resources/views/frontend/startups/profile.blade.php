@@ -185,59 +185,121 @@
                     </div>
                 <!-- </div> -->
             </div>
+
             <div class="tab-pane fade" id="profilePIll" role="tabpanel" aria-labelledby="profile-icon-pill">
                 <div class="card mb-4">
                     <div class="card-body">
-                        <h4>Personal Information</h4>
-                        {!! $startup->description !!}
-                        <hr>
+                        <div class="ul-widget__head __g-support v-margin ">
+                        <div class="ul-widget__head-label">
+                            <h3 class="ul-widget__head-title">General Information</h3>
+                        </div>
+                        <button class="btn btn-primary mb-2" type="button" data-toggle="modal" data-target=".edit-startup-profile-info">Edit Info</button>
+                    </div>
+                        <!-- <h4>Personal Information</h4> -->
+                        <p class="mb-4 mt-4">{!! $startup->description !!}</p>
+                        <!-- <hr> -->
                         <div class="row">
                             <div class="col-md-4 col-6">
                                 <div class="mb-4">
                                     <p class="text-primary mb-1"><i class="i-Calendar text-16 mr-1"></i> Industry</p><span>{{ $startup->industry }}</span>
                                 </div>
                                 <div class="mb-4">
-                                    <p class="text-primary mb-1"><i class="i-Edit-Map text-16 mr-1"></i> Establishment Date</p><span>{{ $startup->establishment_date }}</span>
+                                    <p class="text-primary mb-1"><i class="i-MaleFemale text-16 mr-1"></i> Country</p><span>{{ $startup->country }}</span>
                                 </div>
-                                <div class="mb-4">
-                                    <p class="text-primary mb-1"><i class="i-Globe text-16 mr-1"></i> Project Level</p><span>{{ $startup->project_level }}</span>
-                                </div>
+                               
                             </div>
                             <div class="col-md-4 col-6">
                                 <div class="mb-4">
                                     <p class="text-primary mb-1"><i class="i-MaleFemale text-16 mr-1"></i> Office Address</p><span>{{ $startup->office_address }}</span>
                                 </div>
                                 <div class="mb-4">
-                                    <p class="text-primary mb-1"><i class="i-MaleFemale text-16 mr-1"></i> Country</p><span>{{ $startup->country }}</span>
-                                </div>
-                                <div class="mb-4">
-                                    <p class="text-primary mb-1"><i class="i-Cloud-Weather text-16 mr-1"></i> Website</p><span>{{ $startup->website_url }}</span>
+                                    <p class="text-primary mb-1"><i class="i-Edit-Map text-16 mr-1"></i> Establishment Date</p><span>{{ $startup->establishment_date }}</span>
                                 </div>
                             </div>
                             <div class="col-md-4 col-6">
                                 <div class="mb-4">
-                                    <p class="text-primary mb-1"><i class="i-Face-Style-4 text-16 mr-1"></i> Profession</p><span>{{ $startup->profession }}</span>
+                                    <p class="text-primary mb-1"><i class="i-Globe text-16 mr-1"></i> Project Level</p><span>{{ $startup->project_level }}</span>
                                 </div>
                                 <div class="mb-4">
-                                    <p class="text-primary mb-1"><i class="i-Professor text-16 mr-1"></i> Experience</p><span>8 Years</span>
+                                    <p class="text-primary mb-1"><i class="i-Cloud-Weather text-16 mr-1"></i> Website</p><span>{{ $startup->website_url }}</span>
                                 </div>
-                                <div class="mb-4">
-                                    <p class="text-primary mb-1"><i class="i-Home1 text-16 mr-1"></i> School</p><span>{{ $startup->school }}</span>
-                                </div>
+                               
                             </div>
                         </div>
 
                     </div>
                 </div>
             </div>
+
             <div class="tab-pane fade active show" id="contactPIll" role="tabpanel" aria-labelledby="contact-icon-pill">
-            Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-
-            table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore.
+                Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-
+                table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore.
             </div>
         </div>
     </div>
 
-    
+</div>
+
+<div class="modal fade edit-startup-profile-info" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Update your startup profile info</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            </div>
+            <form action="{{ route('client.startup.update', [$startup->id]) }}" method="POST" enctype="multipart/form-data">
+                <div class="modal-body">
+                    @csrf
+                    @method('PUT') 
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="col-md-12 form-group mb-3">
+                                <label for="company_name"><b>Company Name</b></label>
+                                <input class="form-control form-control-rounded" name="company_name" id="company_name" type="text" value="{{ old('company_name', isset($startup) ? $startup->company_name : '') }}" placeholder="Enter your Company name">
+                            </div>
+                            <div class="col-md-12 form-group mb-3">
+                                <label for="industry"><b>Industry</b></label>
+                                <input class="form-control form-control-rounded" name="industry" id="industry" type="text" value="{{ old('industry', isset($startup) ? $startup->industry : '') }}" placeholder="Your startup industry">
+                            </div>
+                            <div class="col-md-12 form-group mb-3">
+                                <label for="project_level"><b>Project Level</b></label>
+                                <input class="form-control form-control-rounded" name="project_level" id="project_level" type="text" value="{{ old('project_level', isset($startup) ? $startup->project_level : '') }}" placeholder="Enter your project current level">
+                            </div>
+                            <div class="col-md-12 form-group mb-3">
+                                <label for="establishment_date"><b>Establishment Date</b></label>
+                                <input class="form-control form-control-rounded" name="establishment_date" id="establishment_date" type="date" value="{{ old('establishment_date', isset($startup) ? $startup->establishment_date : '') }}" placeholder="Your startup establishment date">
+                            </div>
+                            <div class="col-md-12 form-group mb-3">
+                                <label for="country"><b>Country</b></label>
+                                <input class="form-control form-control-rounded" name="country" id="country" type="text" value="{{ old('country', isset($startup) ? $startup->country : '') }}" placeholder="Enter the country where your startup is based in">
+                            </div>
+                            <div class="col-md-12 form-group mb-3">
+                                <label for="office_address"><b>Office Address</b></label>
+                                <input class="form-control form-control-rounded" name="office_address" id="office_address" type="text" value="{{ old('office_address', isset($startup) ? $startup->office_address : '') }}" placeholder="Enter your startup office address">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="col-md-12 form-group mb-3">
+                                <label for="bio"><b>Bio<sup>Character limit: 255</sup></label>
+                                <textarea class="form-control form-control-rounded" name="bio" id="bio" rows="5" type="text" placeholder="Short decription about your startup">{{ old('bio', isset($startup) ? $startup->bio : '') }}</textarea>
+                            </div>
+
+                            <div class="col-md-12 form-group mb-3">
+                                <label for="description"><b>Description</label>
+                                <textarea class="form-control form-control-rounded" name="description" id="description" rows="10" type="text" placeholder="Decription about your startup">{{ old('description', isset($startup) ? $startup->description : '') }}</textarea>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <!-- <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button> -->
+                    <button class="btn btn-primary ml-2" type="submit">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 @endsection
 @section('page-js')

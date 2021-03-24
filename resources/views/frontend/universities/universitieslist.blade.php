@@ -1,6 +1,47 @@
 @extends('layouts.frontend-layout')
 @section('content')
 <div class="col-xl-8 col-md-12 mb-4">
+<div class="card mb-4">
+        <div class="card-body">
+            <div class="card-title mb-3">Browse and Apply 2021 China Scholarships</div>
+            <form>
+                <div class="row">
+               
+                    <div class="col-md-6 form-group row mb-3">
+                        <label class="col-sm-3 col-form-label" for="picker1"><b>City</b></label>
+                        <div class="col-sm-9">
+                            <select class="form-control form-control-rounded">
+                                <option>Option 1</option>
+                                <option>Option 1</option>
+                                <option>Option 1</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6 form-group row mb-3">
+                        <label class="col-sm-3 col-form-label" for="picker1"><b>University</b></label>
+                        <div class="col-sm-9">
+                            <select class="form-control form-control-rounded">
+                                <option>Option 1</option>
+                                <option>Option 1</option>
+                                <option>Option 1</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 form-group row mb-3">
+                        <label class="col-sm-3 col-form-label"  for="firstName2"><b>Program</b></label>
+                        <div class="col-sm-9">
+                            <input class="form-control form-control-rounded" id="firstName2" type="text" placeholder="Pick a program name">
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <button class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
     @foreach ($universities as $university)
     <div class="card mb-4">
         <div class="card-body">

@@ -99,10 +99,11 @@ class StartupsController extends Controller
         $startup = Startup::findOrFail($id);
         $startup->update($request->all());
 
-        return response()->json([
-            'success'  => 'done',
-            'startupSlug'  => $startup->slug_name,
-        ]);
+        return redirect()->back();
+        // return response()->json([
+        //     'success'  => 'done',
+        //     'startupSlug'  => $startup->slug_name,
+        // ]);
     }
 
     /**

@@ -5,6 +5,7 @@ namespace App\Models\Client;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use \DateTimeInterface;
+use Carbon\Carbon;
 
 class Startup extends Model
 {
@@ -35,6 +36,11 @@ class Startup extends Model
     protected function serializeDate(DateTimeInterface $date)
     {
         return $date->format('Y-m-d H:i:s');
+    }
+
+    public function getEstablishmentDateAttribute($value)
+    {
+        return Carbon::parse($value)->format('Y-m-d');
     }
 
     public function client()

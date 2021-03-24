@@ -23,6 +23,7 @@ class CreateClientsTables extends Migration
             $table->longText('bio')->nullable();
             $table->string('profession');
             $table->string('date_of_birth')->nullable();
+            $table->string('gender')->nullable();
             $table->string('phone')->nullable();
             $table->string('country')->nullable();
             $table->string('residence_location')->nullable();

@@ -27,6 +27,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+        // dd(\Config::get('constants.industries'));
         $startups = Startup::all();
         $scholarships = Scholarship::all();
         $universities = University::all();

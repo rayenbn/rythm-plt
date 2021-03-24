@@ -2,53 +2,40 @@
 @section('content')
 <div class="row justify-content-between">
     <div class="col-lg-3 col-md-3">
-        <h4>Open Scholarships</h4>
-        <!-- <div class="card mb-4">
+        <h4 class="mb-4">Open Scholarships</h4>
+        <div class="card mb-4">
             <div class="card-body">
-         
                 <div class="ul-widget__body">
-                    <div class="tab-content">
-                        <div class="tab-pane active show" >
-                            <div class="ul-widget5">
+                    <!-- <div class="tab-content"> -->
+                        <div class="tab-pane active show" id="__g-widget4-tab1-content">
+                            <div class="ul-widget1">
                                 @foreach ($scholarships as $scholarship)
-                                <div class="ul-widget5__item">
-                                    <div class="ul-widget5__content">
-                                        <div class="ul-widget5__pic">
-                                            <img src="{{ $scholarship->university->logo[0]['preview_thumbnail'] }}" alt="Third slide">
-                                        </div>
-                                        <div class="ul-widget5__section"><a class="ul-widget4__title" href="{{ $scholarship->path() }}">{{ $scholarship->university->name }}</a>
-                                            <p class="ul-widget5__desc">
-                                            @foreach ($scholarship->levels as $level)
-                                            {{ $level->name }}
-                                            @endforeach
-                                            </p>
-                                            
-                                        </div>
+                                <div class="ul-widget4__item ul-widget4__users">
+                                    <div class="ul-widget4__img"><img id="userDropdown" src="{{ $scholarship->university->logo[0]['preview_thumbnail'] }}" alt="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></div>
+                                    <div class="ul-widget2__info ul-widget4__users-info"><a class="ul-widget2__title" href="{{ $scholarship->path() }}">{{ $scholarship->scholar_type }}</a><span class="ul-widget2__username" href="#">{{ $scholarship->university->name }}</span></div>
+                                    <div class="ul-widget4__actions">
+                                        <a class="btn btn-outline-danger m-1" href="{{ $scholarship->path() }}" >Apply</a>
                                     </div>
                                 </div>
                                 @endforeach
                             </div>
-                        </div>
+                        <!-- </div> -->
+                      
                     </div>
                 </div>
             </div>
-        </div> -->
+        </div>
 
-        <h4>Top universities</h4>
+        <h4 class="mb-4">Top universities</h4>
         @foreach ($universities as $university)
         <div class="card mb-2">
             <div class="card-body">
-                <div class="row">
-                    <div class="col-md-3 pr-0 mr-0">
-                        <div class="ul-widget5__pic"><img src="{{ $university->logo[0]['preview_thumbnail'] }}" alt="Third slide">
-                        </div>
+                <div class="ul-widget4__item ul-widget4__users p-0" >
+                    <div class="ul-widget4__img">
+                        <img src="{{ $university->logo[0]['preview_thumbnail'] }}" alt="" >
                     </div>
-                    <div class="col-md-9">
-                        <h5 >{{ $university->name }}</h5>
-                        <p class="ul-widget5__desc" style="font-size: 1rem;">{{ $university->location }}</p>
-                        
-                        
-                    </div>
+                    <div class="ul-widget2__info ul-widget4__users-info"><a class="ul-widget2__title" href="{{ $university->path() }}">{{ $university->name }}</a>
+                    <span class="ul-widget2__username" href="{{ $university->path() }}">{{ $university->location }}</span></div>
                 </div>
             </div>
         </div>

@@ -8,7 +8,7 @@
 @section('page-css')
   <link rel="stylesheet" href="{{asset('assets/styles/vendor/dropzone.min.css')}}">
   <style>
-  .profile-pic {
+    .profile-pic {
         max-width: 200px;
         max-height: 200px;
         display: block;
@@ -31,14 +31,14 @@
         height: auto;
     }
     .p-image {
-    position: absolute;
-    top: 145px;
-    left: 58%;
-    color: #666666;
-    transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+        position: absolute;
+        top: 145px;
+        left: 58%;
+        color: #666666;
+        transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
     }
     .p-image:hover {
-    transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+         transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
     }
     .upload-button {
         font-size: 1.4em;
@@ -46,10 +46,10 @@
     }
 
     .upload-button:hover {
-    transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
-    color: #999;
+        transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+        color: #999;
     }
-    </style>
+</style>
 @endsection
 
 @section('content')
