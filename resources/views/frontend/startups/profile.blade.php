@@ -59,8 +59,8 @@
                         <p class="text-muted ml-4 mb-4">{{ $startup->country }}</p>
                      </div>
             </div>
-                <button class="btn btn-raised btn-raised-secondary m-1" type="button">Secondary</button>
         </div>
+                <button class="btn btn-raised btn-raised-secondary m-1" type="button">Secondary</button>
     </div>
 </div>
 
@@ -131,6 +131,7 @@
         </div>
     </div>
     <div class="col-lg-7 col-md-7 mb-4">
+     <!-- Post a post card -->
         <div class="card mb-3">
             <div class="card-body">
                 <div class="row row-xs">
@@ -143,6 +144,7 @@
                 </div>
             </div>
         </div>
+        <!-- post a post card end -->
         <div class="card mb-4 text-left">
             <div class="card-body">
                 <ul class="nav nav-pills" id="myPillTab" role="tablist">
@@ -162,16 +164,76 @@
                 
             </div>
         </div>
-        <div class="tab-content" id="myPillTabContent">
+        <div class="tab-content p-0" id="myPillTabContent">
             <div class="tab-pane fade" id="homePIll" role="tabpanel" aria-labelledby="home-icon-pill">
-                Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore.
-
+                <!-- <div class="col-lg-4 col-xl-4 mt-3"> -->
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="ul-widget-card__title">Gull Admin</h5>
+                            <p class="card-text text-mute">By Frontend developer</p><img class="d-block w-100 rounded" src="{{ asset('frontend/images/products/headphone-1.jpg') }}" alt="Second slide">
+                            <div class="ul-widget-card__rate-icon --version-2"><span><a href=""><i class="i-Like text-success"></i></a> 576</span><span><a href=""><i class="i-Speach-Bubble-3 text-primary"></i></a> 350</span><span><a href=""><i class="i-Heart1 text-danger"></i></a> 255</span></div>
+                        </div>
+                    </div>
+                <!-- </div> -->
+                <!-- <div class="col-lg-4 col-xl-4 mt-3"> -->
+                <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="ul-widget-card__title">Gull Admin</h5>
+                            <p class="card-text text-mute">By Frontend developer</p><img class="d-block w-100 rounded" src="{{ asset('frontend/images/products/headphone-1.jpg') }}" alt="Second slide">
+                            <div class="ul-widget-card__rate-icon --version-2"><span><a href=""><i class="i-Like text-success"></i></a> 576</span><span><a href=""><i class="i-Speach-Bubble-3 text-primary"></i></a> 350</span><span><a href=""><i class="i-Heart1 text-danger"></i></a> 255</span></div>
+                        </div>
+                    </div>
+                <!-- </div> -->
             </div>
             <div class="tab-pane fade" id="profilePIll" role="tabpanel" aria-labelledby="profile-icon-pill">
-                Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore.
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h4>Personal Information</h4>
+                        {!! $startup->description !!}
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-4 col-6">
+                                <div class="mb-4">
+                                    <p class="text-primary mb-1"><i class="i-Calendar text-16 mr-1"></i> Industry</p><span>{{ $startup->industry }}</span>
+                                </div>
+                                <div class="mb-4">
+                                    <p class="text-primary mb-1"><i class="i-Edit-Map text-16 mr-1"></i> Establishment Date</p><span>{{ $startup->establishment_date }}</span>
+                                </div>
+                                <div class="mb-4">
+                                    <p class="text-primary mb-1"><i class="i-Globe text-16 mr-1"></i> Project Level</p><span>{{ $startup->project_level }}</span>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-6">
+                                <div class="mb-4">
+                                    <p class="text-primary mb-1"><i class="i-MaleFemale text-16 mr-1"></i> Office Address</p><span>{{ $startup->office_address }}</span>
+                                </div>
+                                <div class="mb-4">
+                                    <p class="text-primary mb-1"><i class="i-MaleFemale text-16 mr-1"></i> Country</p><span>{{ $startup->country }}</span>
+                                </div>
+                                <div class="mb-4">
+                                    <p class="text-primary mb-1"><i class="i-Cloud-Weather text-16 mr-1"></i> Website</p><span>{{ $startup->website_url }}</span>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-6">
+                                <div class="mb-4">
+                                    <p class="text-primary mb-1"><i class="i-Face-Style-4 text-16 mr-1"></i> Profession</p><span>{{ $startup->profession }}</span>
+                                </div>
+                                <div class="mb-4">
+                                    <p class="text-primary mb-1"><i class="i-Professor text-16 mr-1"></i> Experience</p><span>8 Years</span>
+                                </div>
+                                <div class="mb-4">
+                                    <p class="text-primary mb-1"><i class="i-Home1 text-16 mr-1"></i> School</p><span>{{ $startup->school }}</span>
+                                </div>
+                            </div>
+                        </div>
 
+                    </div>
+                </div>
             </div>
-            <div class="tab-pane fade active show" id="contactPIll" role="tabpanel" aria-labelledby="contact-icon-pill">Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore.</div>
+            <div class="tab-pane fade active show" id="contactPIll" role="tabpanel" aria-labelledby="contact-icon-pill">
+            Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-
+            table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore.
+            </div>
         </div>
     </div>
 

@@ -1,6 +1,165 @@
 @extends('layouts.frontend-layout')
 @section('content')
 <div class="col-xl-8 col-md-12 mb-4">
+    <div class="card mb-4">
+        <div class="card-body">
+            <div class="card-title mb-3">Browse and Apply 2021 China Scholarships</div>
+            <form>
+                <div class="row">
+                    <div class="col-md-12 form-group mb-3" >
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label for="picker3"><b>Type:</b> </label>
+                            </div>
+                            <div class="col-md-10">
+                                <div style="display: flex;">
+                                    <label class="checkbox checkbox-outline-primary ml-4">
+                                        <input type="radio" name="radio" ><span>All</span><span class="checkmark"></span>
+                                    </label>
+                                    <label class="checkbox checkbox-outline-primary ml-4">
+                                        <input type="radio" name="radio"><span>Full Scholarship</span><span class="checkmark"></span>
+                                    </label>
+                                    <label class="checkbox checkbox-outline-primary ml-4">
+                                        <input type="radio" name="radio"><span>Partial Scholarship</span><span class="checkmark"></span>
+                                    </label>    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-12 form-group mb-3" >
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label for="picker3"><b>Coverage:</b> </label>
+                            </div>
+                            <div class="col-md-10">
+                                <div style="display: flex;">
+                                    <label class="checkbox checkbox-outline-primary ml-4">
+                                        <input type="radio" name="radio" ><span>Tuition</span><span class="checkmark"></span>
+                                    </label>
+                                    <label class="checkbox checkbox-outline-primary ml-4">
+                                        <input type="radio" name="radio"><span>Accommodation</span><span class="checkmark"></span>
+                                    </label>
+                                    <label class="checkbox checkbox-outline-primary ml-4">
+                                        <input type="radio" name="radio"><span>Living Allowance</span><span class="checkmark"></span>
+                                    </label>
+                                    <label class="checkbox checkbox-outline-primary ml-4">
+                                        <input type="radio" name="radio"><span>Other</span><span class="checkmark"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 form-group row mb-3">
+                        <label class="col-sm-2 col-form-label" for="picker1"><b>City</b></label>
+                        <div class="col-sm-10">
+                            <select class="form-control form-control-rounded">
+                                <option>Option 1</option>
+                                <option>Option 1</option>
+                                <option>Option 1</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6 form-group row mb-3">
+                        <label class="col-sm-3 col-form-label" for="picker1"><b>University</b></label>
+                        <div class="col-sm-9">
+                            <select class="form-control form-control-rounded">
+                                <option>Option 1</option>
+                                <option>Option 1</option>
+                                <option>Option 1</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 form-group mb-3" >
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label for="picker3"><b>Degree:</b> </label>
+                            </div>
+                            <div class="col-md-10">
+                                <div style="display: flex;">
+                                    <label class="checkbox checkbox-outline-primary ml-4">
+                                        <input type="radio" name="radio" ><span>All</span><span class="checkmark"></span>
+                                    </label>
+                                    <label class="checkbox checkbox-outline-primary ml-4">
+                                        <input type="radio" name="radio" ><span>Bachelor</span><span class="checkmark"></span>
+                                    </label>
+                                    <label class="checkbox checkbox-outline-primary ml-4">
+                                        <input type="radio" name="radio"><span>Master</span><span class="checkmark"></span>
+                                    </label>
+                                    <label class="checkbox checkbox-outline-primary ml-4">
+                                        <input type="radio" name="radio"><span>Doctoral</span><span class="checkmark"></span>
+                                    </label>
+                                    <label class="checkbox checkbox-outline-primary ml-4">
+                                        <input type="radio" name="radio"><span>Associate</span><span class="checkmark"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 form-group mb-3" >
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label for="picker3"><b>Language:</b> </label>
+                            </div>
+                            <div class="col-md-10">
+                                <div style="display: flex;">
+                                    <label class="checkbox checkbox-outline-primary ml-4">
+                                        <input type="radio" name="radio" ><span>All</span><span class="checkmark"></span>
+                                    </label>
+                                    <label class="checkbox checkbox-outline-primary ml-4">
+                                        <input type="radio" name="radio"><span>Chinese</span><span class="checkmark"></span>
+                                    </label>
+                                    <label class="checkbox checkbox-outline-primary ml-4">
+                                        <input type="radio" name="radio"><span>English</span><span class="checkmark"></span>
+                                    </label>
+                                    <label class="checkbox checkbox-outline-primary ml-4">
+                                        <input type="radio" name="radio"><span>Other</span><span class="checkmark"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 form-group mb-3" >
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label for="picker3"><b>Semester:</b> </label>
+                            </div>
+                            <div class="col-md-10">
+                                <div style="display: flex;">
+                                    <label class="checkbox checkbox-outline-primary ml-4">
+                                        <input type="radio" name="radio" ><span>All</span><span class="checkmark"></span>
+                                    </label>
+                                    <label class="checkbox checkbox-outline-primary ml-4">
+                                        <input type="radio" name="radio"><span>Spring</span><span class="checkmark"></span>
+                                    </label>
+                                    <label class="checkbox checkbox-outline-primary ml-4">
+                                        <input type="radio" name="radio"><span>Autumn</span><span class="checkmark"></span>
+                                    </label>
+                                    <label class="checkbox checkbox-outline-primary ml-4">
+                                        <input type="radio" name="radio"><span>Other</span><span class="checkmark"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 form-group mb-3">
+                        <label for="firstName2"><b>Program</b></label>
+                        <input class="form-control form-control-rounded" id="firstName2" type="text" placeholder="Pick a program name">
+                    </div>
+
+                    <div class="col-md-12">
+                        <button class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <div class="card">
         <div class="card-body">
             <div class="ul-widget__head">

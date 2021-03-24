@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Frontend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Client\Startup;
+use App\Models\Scholarship;
+use App\Models\University;
 
 class HomeController extends Controller
 {
@@ -24,6 +27,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('frontend.home');
+        $startups = Startup::all();
+        $scholarships = Scholarship::all();
+        $universities = University::all();
+        return view('frontend.home',compact('startups', 'scholarships','universities'));
     }
 }
