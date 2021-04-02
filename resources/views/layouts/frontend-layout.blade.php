@@ -190,6 +190,7 @@
         <script src="{{ asset('assets/js/vendor/feather.min.js') }}"></script>
         <script src="{{ asset('assets/js/vendor/metisMenu.min.js') }}"></script>
         <script src="{{ asset('assets/js/layout-sidebar-vertical.js') }}"></script>
+        
         @else
 
         @endif --}}
@@ -201,7 +202,6 @@
         {{-- <script src="{{ mix('assets/js/laravel/app.js') }}"></script>
         --}}
         
-        <script src="{{ asset('frontend/js/plugins/cropper.min.js') }}"></script>
 
         @yield('bottom-js')
 </body>

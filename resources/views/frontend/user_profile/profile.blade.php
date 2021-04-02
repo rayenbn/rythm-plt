@@ -1,6 +1,12 @@
 @extends('layouts.frontend-layout')
 @section('page-css')
-<link rel="stylesheet" href="{{asset('assets/styles/vendor/cropper.min.css')}}">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.min.css"
+    />
+
   <style>
     .profile-pic {
         max-width: 200px;
@@ -290,22 +296,89 @@
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
             </div>
             <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-9">
-                        <div class="img-container o-hidden">
-                            <img class="cropper-main-img img-fluid" src="{{ asset('assets/images/photo-wide-1.jpg') }}" alt="Picture" />
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <div class="docs-preview clearfix">
-                                <div class="img-preview preview-lg img-fluid"></div>
-                                <div class="img-preview preview-md img-fluid"></div>
-                                <div class="img-preview preview-sm img-fluid"></div>
+                <!-- <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-title">Image Cropper</div>
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <div class="img-container o-hidden">
+                                            <img class="cropper-main-img img-fluid" src="{{asset('assets/images/photo-wide-1.jpg')}}" alt="Picture">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <div class="docs-preview clearfix">
+                                                <div class="img-preview preview-lg img-fluid"></div>
+                                                <div class="img-preview preview-md img-fluid"></div>
+                                                <div class="img-preview preview-sm img-fluid"></div>
+                                            </div>
+                                        </div>
+                                        <div class="docs-data">
+                                            <fieldset class="form-group">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">X</span>
+                                                    </div>
+                                                    <input type="number" class="form-control cropper-main-dataX" placeholder="x">
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text">px</span>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+
+                                            <fieldset class="form-group">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">Y</span>
+                                                    </div>
+                                                    <input type="number" class="form-control cropper-main-dataY" placeholder="y">
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text">px</span>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+
+                                            <fieldset class="form-group">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">Width</span>
+                                                    </div>
+                                                    <input type="number" class="form-control cropper-main-dataWidth" placeholder="width">
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text">px</span>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+
+                                            <fieldset class="form-group">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">Height</span>
+                                                    </div>
+                                                    <input type="number" class="form-control cropper-main-dataHeight" placeholder="height">
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text">px</span>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
+                </div> -->
+                <input type="file" name="fileUpload" id="fileUpload" />
+                <div id="uploadedImage"></div>
+                <hr />
+                <div>
+                <img id="croppedImage" /><br />
+                <button id="cropButton">crop</button>
                 </div>
+                <div id="cropResult"></div>
+
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
@@ -318,8 +391,8 @@
 @endsection
 
 @section('page-js')
-<script src="{{asset('assets/js/vendor/cropper.min.js')}}"></script>
-<script src="{{asset('assets/js/cropper.script.js')}}"></script>
+
+<!-- <script src="{{asset('assets/js/cropper.script.js')}}"></script> -->
 
 <script>
     $(document).ready(function() {
@@ -351,5 +424,60 @@
 
     });
 
+</script>
+<script>
+    const uploadedImageDiv = document.getElementById("uploadedImage");
+    const fileUpload = document.getElementById("fileUpload");
+    fileUpload.addEventListener("change", getImage, false);
+    let cropper = null;
+    const cropButton = document.getElementById("cropButton");
+    cropButton.addEventListener("click", cropImage);
+    let myGreatImage = null;
+    const croppedImage = document.getElementById("croppedImage");
+
+    function getImage() {
+    console.log("images", this.files[0]);
+    const imageToProcess = this.files[0];
+
+    // display uploaded image
+    let newImg = new Image(imageToProcess.width, imageToProcess.height);
+    newImg.src = imageToProcess;
+    newImg.src = URL.createObjectURL(imageToProcess);
+    newImg.id = "myGreatImage";
+    uploadedImageDiv.style.border = "4px solid #FCB514";
+    uploadedImageDiv.appendChild(newImg);
+    myGreatImage = document.getElementById("myGreatImage");
+
+    processImage();
+    }
+
+    function processImage() {
+        var $dataHeight = 1335;
+        var $dataWidth = 300;
+    cropButton.style.display = "block";
+    cropper = new Cropper(myGreatImage, {
+        // aspectRatio: 1,
+        dragMode: 'move',
+        cropBoxMovable: true,
+        cropBoxResizable: false,
+        crop(event) {
+            // $dataHeight.val(Math.round(event.height));
+            // $dataWidth.val(Math.round(event.width));
+            console.log(
+                Math.round(1335),
+                Math.round(300)
+            );
+            const canvas = this.cropper.getCroppedCanvas();
+            croppedImage.src = canvas.toDataURL("image/png");
+        }
+    });
+    }
+
+    function cropImage() {
+    const imgurl = cropper.getCroppedCanvas().toDataURL();
+    const img = document.createElement("img");
+    img.src = imgurl;
+    document.getElementById("cropResult").appendChild(img);
+    }
 </script>
 @endsection
