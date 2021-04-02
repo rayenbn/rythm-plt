@@ -22,6 +22,7 @@ class CreateScholarshipsTable extends Migration
             $table->string('teaching_lang')->nullable();
             $table->string('original_tuition')->nullable();
             $table->longText('desc')->nullable();
+            $table->string('program')->nullable();
             $table->unsignedInteger('university_id')->nullable();
             $table->foreign('university_id', 'university_fk_2220842')->references('id')->on('universities');
             $table->timestamps();

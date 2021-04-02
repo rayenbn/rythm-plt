@@ -11,8 +11,10 @@ import UsersIndex from './cruds/Users'
 import UsersSingle from './cruds/Users/single'
 import UniversitiesIndex from './cruds/Universities'
 import UniversitiesSingle from './cruds/Universities/single'
-import LevelsIndex from './cruds/Levels'
-import LevelsSingle from './cruds/Levels/single'
+import DegreesIndex from './cruds/Degrees'
+import DegreesSingle from './cruds/Degrees/single'
+// import LevelsIndex from './cruds/Levels'
+// import LevelsSingle from './cruds/Levels/single'
 import ScholarshipsIndex from './cruds/Scholarships'
 import ScholarshipsSingle from './cruds/Scholarships/single'
 
@@ -31,8 +33,10 @@ export default new Vuex.Store({
     UsersSingle,
     UniversitiesIndex,
     UniversitiesSingle,
-    LevelsIndex,
-    LevelsSingle,
+    DegreesIndex,
+    DegreesSingle,
+    // LevelsIndex,
+    // LevelsSingle,
     ScholarshipsIndex,
     ScholarshipsSingle
   },

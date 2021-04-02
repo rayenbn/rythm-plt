@@ -22,12 +22,12 @@ Route::group([
     Route::get('/universities/{university}-{slug}', 'UniversitiesController@show');
     Route::resource('universities', 'UniversitiesController');
 
-    Route::get('startup/{slug_name}', 'StartupsController@show')->name('startup-profile');
+    // Route::get('startup/{slug_name}', 'StartupsController@show')->name('startup-profile');
+    Route::post('startup/search', 'StartupsController@search')->name('startup.search');
     Route::resource('startup', 'StartupsController');
     Route::post('startup/profile/create', 'StartupsController@createStartup')->name('startup.fastcreate');
     
     Route::get('/{id}', 'ClientController@show')->name('user-profile');
     Route::put('profile/{client}/personal-info/update', 'ClientController@update')->name('user-profile.edit');
-
 
 });

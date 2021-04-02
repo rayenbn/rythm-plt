@@ -57,10 +57,15 @@ class Scholarship extends Model implements HasMedia
         return $this->belongsTo(University::class);
     }
     
-    public function levels()
+    public function degree()
     {
-        return $this->belongsToMany(Level::class);
+        return $this->belongsTo(Degree::class);
     }
+
+    // public function levels()
+    // {
+    //     return $this->belongsToMany(Level::class);
+    // }
 
     // public function registerMediaConversions(Media $media = null): void
     // {

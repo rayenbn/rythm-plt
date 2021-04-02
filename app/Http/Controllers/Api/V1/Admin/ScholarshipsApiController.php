@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreScholarshipRequest;
 use App\Http\Requests\UpdateScholarshipRequest;
 use App\Http\Resources\Admin\ScholarshipResource;
-use App\Models\Level;
+use App\Models\Degree;
 use App\Models\Scholarship;
 use App\Models\University;
 use Gate;
@@ -20,13 +20,13 @@ class ScholarshipsApiController extends Controller
     {
         abort_if(Gate::denies('company_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new ScholarshipResource(Scholarship::with(['university', 'levels'])->advancedFilter());
+        return new ScholarshipResource(Scholarship::with(['university', 'degree'])->advancedFilter());
     }
 
     public function store(StoreScholarshipRequest $request)
     {
         $scholarship = Scholarship::create($request->validated());
-        $scholarship->levels()->sync($request->input('levels.*.id', []));
+        // $scholarship->levels()->sync($request->input('levels.*.id', []));
 
         if ($media = $request->input('logo', [])) {
             Media::whereIn('id', data_get($media, '*.id'))
@@ -46,7 +46,7 @@ class ScholarshipsApiController extends Controller
         return response([
             'meta' => [
                 'university'       => University::get(['id', 'name']),
-                'levels' => Level::get(['id', 'name']),
+                'degree' => Degree::get(['id', 'name']),
             ],
         ]);
     }
@@ -55,13 +55,13 @@ class ScholarshipsApiController extends Controller
     {
         abort_if(Gate::denies('company_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new ScholarshipResource($scholarship->load(['university', 'levels']));
+        return new ScholarshipResource($scholarship->load(['university', 'degree']));
     }
 
     public function update(UpdateScholarshipRequest $request, Scholarship $scholarship)
     {
         $scholarship->update($request->validated());
-        $scholarship->levels()->sync($request->input('levels.*.id', []));
+        // $scholarship->levels()->sync($request->input('levels.*.id', []));
         // $scholarship->updateMedia($request->input('logo', []), 'company_logo');
 
         return (new ScholarshipResource($scholarship))
@@ -74,10 +74,10 @@ class ScholarshipsApiController extends Controller
         abort_if(Gate::denies('company_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return response([
-            'data' => new ScholarshipResource($scholarship->load(['university', 'levels'])),
+            'data' => new ScholarshipResource($scholarship->load(['university', 'degree'])),
             'meta' => [
                 'university'   => University::get(['id', 'name']),
-                'levels'       => Level::get(['id', 'name']),
+                'degree'       => Degree::get(['id', 'name']),
             ],
         ]);
     }

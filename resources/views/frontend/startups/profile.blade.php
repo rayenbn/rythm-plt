@@ -33,7 +33,7 @@
 @endsection
 @section('content')
 <div class="card user-profile o-hidden mb-4 " style="box-shadow: unset;">
-    <div class="header-cover" style="background-image: url('../../dist-assets/images/photo-wide-4.jpg')"></div>
+    <div class="header-cover" style="background-image: url('../../assets/images/photo-wide-4.jpg')"></div>
     <!-- <div class="user-info" style="position: relative;">
         <img class="profile-picture avatar-lg mb-2" src="{{ asset('frontend/images/faces/1.jpg') }}" alt="">
         <div class="p-image">

@@ -12,7 +12,6 @@
     @yield('before-css')
     {{-- theme css --}}
 
-    
     <link id="gull-theme" rel="stylesheet" href="{{ asset('assets/fonts/iconsmind/iconsmind.css') }}">
     <link id="gull-theme" rel="stylesheet" href="{{ asset('assets/styles/css/themes/lite-purple.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/styles/vendor/perfect-scrollbar.css') }}">
@@ -36,7 +35,7 @@
     </div><!-- ============ Search UI Start ============= -->
     <div class="search-ui">
         <div class="search-header">
-            <img src="../../dist-assets/images/logo.png" alt="" class="logo">
+            <img src="{{ asset('frontend/images/logo.png') }}" alt="" class="logo">
             <button class="search-close btn btn-icon bg-transparent float-right mt-2">
                 <i class="i-Close-Window text-22 text-muted"></i>
             </button>
@@ -50,7 +49,7 @@
                 <div class="card o-hidden flex-row mb-4 d-flex">
                     <div class="list-thumb d-flex">
                         <!-- TUMBNAIL -->
-                        <img src="../../dist-assets/images/products/headphone-1.jpg" alt="">
+                        <img src="{{ asset('frontend/images/products/headphone-1.jpg') }}" alt="">
                     </div>
                     <div class="flex-grow-1 pl-2 d-flex">
                         <div class="card-body align-self-center d-flex flex-column justify-content-between align-items-lg-center flex-lg-row">
@@ -73,7 +72,7 @@
                 <div class="card o-hidden flex-row mb-4 d-flex">
                     <div class="list-thumb d-flex">
                         <!-- TUMBNAIL -->
-                        <img src="../../dist-assets/images/products/headphone-2.jpg" alt="">
+                        <img src="{{ asset('frontend/images/products/headphone-2.jpg') }}" alt="">
                     </div>
                     <div class="flex-grow-1 pl-2 d-flex">
                         <div class="card-body align-self-center d-flex flex-column justify-content-between align-items-lg-center flex-lg-row">
@@ -96,7 +95,7 @@
                 <div class="card o-hidden flex-row mb-4 d-flex">
                     <div class="list-thumb d-flex">
                         <!-- TUMBNAIL -->
-                        <img src="../../dist-assets/images/products/headphone-3.jpg" alt="">
+                        <img src="{{ asset('frontend/images/products/headphone-3.jpg') }}" alt="">
                     </div>
                     <div class="flex-grow-1 pl-2 d-flex">
                         <div class="card-body align-self-center d-flex flex-column justify-content-between align-items-lg-center flex-lg-row">
@@ -119,7 +118,7 @@
                 <div class="card o-hidden flex-row mb-4 d-flex">
                     <div class="list-thumb d-flex">
                         <!-- TUMBNAIL -->
-                        <img src="../../dist-assets/images/products/headphone-4.jpg" alt="">
+                        <img src="{{ asset('frontend/images/products/headphone-4.jpg') }}" alt="">
                     </div>
                     <div class="flex-grow-1 pl-2 d-flex">
                         <div class="card-body align-self-center d-flex flex-column justify-content-between align-items-lg-center flex-lg-row">
@@ -201,6 +200,8 @@
         {{-- laravel js --}}
         {{-- <script src="{{ mix('assets/js/laravel/app.js') }}"></script>
         --}}
+        
+        <script src="{{ asset('frontend/js/plugins/cropper.min.js') }}"></script>
 
         @yield('bottom-js')
 </body>

@@ -122,29 +122,53 @@ const routes = [
         meta: { title: 'Universities' }
       },
       {
-        path: 'levels',
-        name: 'levels.index',
-        component: () => import('@cruds/Levels/Index.vue'),
-        meta: { title: 'Levels' }
+        path: 'degrees',
+        name: 'degrees.index',
+        component: () => import('@cruds/Degrees/Index.vue'),
+        meta: { title: 'Degrees' }
       },
       {
-        path: 'levels/create',
-        name: 'levels.create',
-        component: () => import('@cruds/Levels/Create.vue'),
-        meta: { title: 'Levels' }
+        path: 'degrees/create',
+        name: 'degrees.create',
+        component: () => import('@cruds/Degrees/Create.vue'),
+        meta: { title: 'Degrees' }
       },
       {
-        path: 'levels/:id',
-        name: 'levels.show',
-        component: () => import('@cruds/Levels/Show.vue'),
-        meta: { title: 'Levels' }
+        path: 'degrees/:id',
+        name: 'degrees.show',
+        component: () => import('@cruds/Degrees/Show.vue'),
+        meta: { title: 'Degrees' }
       },
       {
-        path: 'levels/:id/edit',
-        name: 'levels.edit',
-        component: () => import('@cruds/Levels/Edit.vue'),
-        meta: { title: 'Levels' }
+        path: 'degrees/:id/edit',
+        name: 'degrees.edit',
+        component: () => import('@cruds/Degrees/Edit.vue'),
+        meta: { title: 'Degrees' }
       },
+      // {
+      //   path: 'levels',
+      //   name: 'levels.index',
+      //   component: () => import('@cruds/Levels/Index.vue'),
+      //   meta: { title: 'Levels' }
+      // },
+      // {
+      //   path: 'levels/create',
+      //   name: 'levels.create',
+      //   component: () => import('@cruds/Levels/Create.vue'),
+      //   meta: { title: 'Levels' }
+      // },
+      // {
+      //   path: 'levels/:id',
+      //   name: 'levels.show',
+      //   component: () => import('@cruds/Levels/Show.vue'),
+      //   meta: { title: 'Levels' }
+      // },
+      // {
+      //   path: 'levels/:id/edit',
+      //   name: 'levels.edit',
+      //   component: () => import('@cruds/Levels/Edit.vue'),
+      //   meta: { title: 'Levels' }
+      // },
       {
         path: 'scholarships',
         name: 'scholarships.index',

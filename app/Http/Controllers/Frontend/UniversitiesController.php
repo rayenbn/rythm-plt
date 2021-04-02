@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\University;
 use Illuminate\Http\Request;
+use Spatie\QueryBuilder\QueryBuilder;
+use Spatie\QueryBuilder\AllowedFilter;
 
 class UniversitiesController extends Controller
 {
@@ -15,10 +17,13 @@ class UniversitiesController extends Controller
      */
     public function index()
     {
-        $universities = University::all();
-        // foreach ($scholarships as $scholarship){
-        //     dd($scholarship->university);
-        // }
+        $universities = QueryBuilder::for(University::class)
+        ->allowedFilters([
+                'name', 
+                'location',
+                // AllowedFilter::exact('industry'),
+            ])
+        ->get();
         return view('frontend.universities.universitieslist', compact('universities'));
     }
 

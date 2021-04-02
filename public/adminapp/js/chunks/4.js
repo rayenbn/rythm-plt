@@ -100,13 +100,19 @@ __webpack_require__.r(__webpack_exports__);
         },
         gate: 'city_access'
       }, {
-        title: 'Levels',
+        title: 'Degrees',
         icon: 'table_view',
         path: {
-          name: 'levels.index'
+          name: 'degrees.index'
         },
-        gate: 'category_access'
-      }, {
+        gate: 'degree_access'
+      }, // {
+      //   title: 'Levels',
+      //   icon: 'table_view',
+      //   path: { name: 'levels.index' },
+      //   gate: 'category_access'
+      // },
+      {
         title: 'Scholarships',
         icon: 'table_view',
         path: {

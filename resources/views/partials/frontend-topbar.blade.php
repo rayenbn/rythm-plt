@@ -157,7 +157,7 @@
                     <a class="dropdown-item" href="{{route('client.user-profile', auth()->user()->id)}}">My profile</a>
                     <a class="dropdown-item">Account settings</a>
                     <!-- <a class="dropdown-item">Billing history</a> -->
-                    <a class="dropdown-item d-inline-block d-sm-none" type="button" data-toggle="modal" data-target="#exampleModal">
+                    <a class="dropdown-item d-inline-block d-sm-none" type="button" data-toggle="modal" data-target=".fast-startup-create-modal">
                     Create Your Startup
                     </a>
                     <a class="dropdown-item" href="{{route('client.logout')}}">Sign out</a>
@@ -167,7 +167,7 @@
     </div>
 </div>
 
-<div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade fast-startup-create-modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">

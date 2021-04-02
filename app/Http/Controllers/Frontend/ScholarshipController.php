@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Scholarship;
 use Illuminate\Http\Request;
+use App\Models\University;
+use Spatie\QueryBuilder\QueryBuilder;
+use Spatie\QueryBuilder\AllowedFilter;
 
 class ScholarshipController extends Controller
 {
@@ -15,11 +18,25 @@ class ScholarshipController extends Controller
      */
     public function index()
     {
-        $scholarships = Scholarship::all();
-        // foreach ($scholarships as $scholarship){
-        //     dd($scholarship->university);
-        // }
-        return view('frontend.scholarships.scholarlist', compact('scholarships'));
+        // $scholarships = Scholarship::all();
+        $universities_search = University::all();
+
+        $scholarships = QueryBuilder::for(Scholarship::class)
+        ->join('universities', 'universities.id', 'scholarships.university_id')
+        ->join('degrees', 'degrees.id', 'scholarships.university_id')
+        ->allowedFilters([
+                'scholar_type', 
+                'scholar_coverage',
+                'teaching_lang',
+                'program',
+                AllowedFilter::partial('university_name', 'universities.name'),
+                AllowedFilter::partial('university_location', 'universities.location'),
+                AllowedFilter::partial('degree_name', 'degrees.name')
+            ])
+        ->get();
+
+        // dd($scholarships);
+        return view('frontend.scholarships.scholarlist', compact('scholarships', 'universities_search'));
     }
 
     /**

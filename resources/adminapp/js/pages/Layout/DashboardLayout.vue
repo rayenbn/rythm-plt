@@ -65,12 +65,18 @@ export default {
           path: { name: 'universities.index' },
           gate: 'city_access'
         },
-        {
-          title: 'Levels',
+         {
+          title: 'Degrees',
           icon: 'table_view',
-          path: { name: 'levels.index' },
-          gate: 'category_access'
+          path: { name: 'degrees.index' },
+          gate: 'degree_access'
         },
+        // {
+        //   title: 'Levels',
+        //   icon: 'table_view',
+        //   path: { name: 'levels.index' },
+        //   gate: 'category_access'
+        // },
         {
           title: 'Scholarships',
           icon: 'table_view',

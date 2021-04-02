@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "adminapp/js/chunks/" + ({}[chunkId]||chunkId) + ".js?id=" + {"0":"136d0b7a26eb63bd25d1","1":"94f71d36df4fe133aab8","2":"8cf6c44d8fb796b7f898","3":"410d00e047f9472220f6","4":"7b79e8d1c75c592c0e7f","5":"fe9f11cebef64003a1ed","6":"21be1c340fa9a8b44655","7":"2acdbb4105894f0796ff","8":"e5cb3cd08db6fc869e08","9":"04490a83e717aebb22b8","10":"da03d12e2f0ebcaa2c45","11":"df979055d2a31fe5ef91","12":"9c51cb57aed959296414","13":"d73eb07cf6be4ad70864","14":"2de34746667c100a1468","15":"e867a9186f82692a322f","16":"ce09c81b02c6bef7fe62","17":"d697f8f440b1ccfaa836","18":"eab7ee8e21ecaddadbf7","19":"b6dbee4e1742aad87c8c","20":"62505ce9a951dc770ad0","21":"0f426d22559829e81839","22":"d16702bf1787bf072d94","23":"ffbfcd8bd49c639a5cd9","24":"5d16cbfc26087500bd36","25":"e58aa83a22b9bc920208","26":"b0a40611e801df26b0eb","27":"e4b11393422071d18e17","28":"bc4c851f5ab11f9547c1","29":"c45c4431aa40234d75ad"}[chunkId] + ""
+/******/ 		return __webpack_require__.p + "adminapp/js/chunks/" + ({}[chunkId]||chunkId) + ".js?id=" + {"0":"136d0b7a26eb63bd25d1","1":"94f71d36df4fe133aab8","2":"8cf6c44d8fb796b7f898","3":"410d00e047f9472220f6","4":"14bd5da7ec441e082a35","5":"fe9f11cebef64003a1ed","6":"21be1c340fa9a8b44655","7":"861be0c935742601b75c","8":"47b2191364630c2f9113","9":"5f95a2df9eed1abb95e5","10":"cb6ceb1164d1901dee68","11":"dc0a39e11b995a7bc166","12":"23bdea8d8f2d484598a8","13":"7a70097fbba2677dda62","14":"2de34746667c100a1468","15":"e867a9186f82692a322f","16":"ce09c81b02c6bef7fe62","17":"d697f8f440b1ccfaa836","18":"eab7ee8e21ecaddadbf7","19":"b6dbee4e1742aad87c8c","20":"62505ce9a951dc770ad0","21":"0f426d22559829e81839","22":"d16702bf1787bf072d94","23":"ffbfcd8bd49c639a5cd9","24":"5d16cbfc26087500bd36","25":"e58aa83a22b9bc920208","26":"b0a40611e801df26b0eb","27":"e4b11393422071d18e17","28":"bc4c851f5ab11f9547c1","29":"c45c4431aa40234d75ad"}[chunkId] + ""
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -52413,7 +52413,7 @@ var routes = [{
     path: 'universities/:id',
     name: 'universities.show',
     component: function component() {
-      return __webpack_require__.e(/*! import() */ 9).then(__webpack_require__.bind(null, /*! @cruds/Universities/Show.vue */ "./resources/adminapp/js/cruds/Universities/Show.vue"));
+      return __webpack_require__.e(/*! import() */ 10).then(__webpack_require__.bind(null, /*! @cruds/Universities/Show.vue */ "./resources/adminapp/js/cruds/Universities/Show.vue"));
     },
     meta: {
       title: 'Universities'
@@ -52428,46 +52428,70 @@ var routes = [{
       title: 'Universities'
     }
   }, {
-    path: 'levels',
-    name: 'levels.index',
+    path: 'degrees',
+    name: 'degrees.index',
     component: function component() {
-      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(12)]).then(__webpack_require__.bind(null, /*! @cruds/Levels/Index.vue */ "./resources/adminapp/js/cruds/Levels/Index.vue"));
+      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(13)]).then(__webpack_require__.bind(null, /*! @cruds/Degrees/Index.vue */ "./resources/adminapp/js/cruds/Degrees/Index.vue"));
     },
     meta: {
-      title: 'Levels'
+      title: 'Degrees'
     }
   }, {
-    path: 'levels/create',
-    name: 'levels.create',
+    path: 'degrees/create',
+    name: 'degrees.create',
     component: function component() {
-      return __webpack_require__.e(/*! import() */ 10).then(__webpack_require__.bind(null, /*! @cruds/Levels/Create.vue */ "./resources/adminapp/js/cruds/Levels/Create.vue"));
+      return Promise.all(/*! import() */[__webpack_require__.e(3), __webpack_require__.e(2), __webpack_require__.e(11)]).then(__webpack_require__.bind(null, /*! @cruds/Degrees/Create.vue */ "./resources/adminapp/js/cruds/Degrees/Create.vue"));
     },
     meta: {
-      title: 'Levels'
+      title: 'Degrees'
     }
   }, {
-    path: 'levels/:id',
-    name: 'levels.show',
+    path: 'degrees/:id',
+    name: 'degrees.show',
     component: function component() {
-      return __webpack_require__.e(/*! import() */ 13).then(__webpack_require__.bind(null, /*! @cruds/Levels/Show.vue */ "./resources/adminapp/js/cruds/Levels/Show.vue"));
+      return __webpack_require__.e(/*! import() */ 7).then(__webpack_require__.bind(null, /*! @cruds/Degrees/Show.vue */ "./resources/adminapp/js/cruds/Degrees/Show.vue"));
     },
     meta: {
-      title: 'Levels'
+      title: 'Degrees'
     }
   }, {
-    path: 'levels/:id/edit',
-    name: 'levels.edit',
+    path: 'degrees/:id/edit',
+    name: 'degrees.edit',
     component: function component() {
-      return __webpack_require__.e(/*! import() */ 11).then(__webpack_require__.bind(null, /*! @cruds/Levels/Edit.vue */ "./resources/adminapp/js/cruds/Levels/Edit.vue"));
+      return Promise.all(/*! import() */[__webpack_require__.e(3), __webpack_require__.e(2), __webpack_require__.e(12)]).then(__webpack_require__.bind(null, /*! @cruds/Degrees/Edit.vue */ "./resources/adminapp/js/cruds/Degrees/Edit.vue"));
     },
     meta: {
-      title: 'Levels'
+      title: 'Degrees'
     }
-  }, {
+  }, // {
+  //   path: 'levels',
+  //   name: 'levels.index',
+  //   component: () => import('@cruds/Levels/Index.vue'),
+  //   meta: { title: 'Levels' }
+  // },
+  // {
+  //   path: 'levels/create',
+  //   name: 'levels.create',
+  //   component: () => import('@cruds/Levels/Create.vue'),
+  //   meta: { title: 'Levels' }
+  // },
+  // {
+  //   path: 'levels/:id',
+  //   name: 'levels.show',
+  //   component: () => import('@cruds/Levels/Show.vue'),
+  //   meta: { title: 'Levels' }
+  // },
+  // {
+  //   path: 'levels/:id/edit',
+  //   name: 'levels.edit',
+  //   component: () => import('@cruds/Levels/Edit.vue'),
+  //   meta: { title: 'Levels' }
+  // },
+  {
     path: 'scholarships',
     name: 'scholarships.index',
     component: function component() {
-      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(7)]).then(__webpack_require__.bind(null, /*! @cruds/Scholarships/Index.vue */ "./resources/adminapp/js/cruds/Scholarships/Index.vue"));
+      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(8)]).then(__webpack_require__.bind(null, /*! @cruds/Scholarships/Index.vue */ "./resources/adminapp/js/cruds/Scholarships/Index.vue"));
     },
     meta: {
       title: 'Scholarships'
@@ -52485,7 +52509,7 @@ var routes = [{
     path: 'scholarships/:id',
     name: 'scholarships.show',
     component: function component() {
-      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(8)]).then(__webpack_require__.bind(null, /*! @cruds/Scholarships/Show.vue */ "./resources/adminapp/js/cruds/Scholarships/Show.vue"));
+      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(9)]).then(__webpack_require__.bind(null, /*! @cruds/Scholarships/Show.vue */ "./resources/adminapp/js/cruds/Scholarships/Show.vue"));
     },
     meta: {
       title: 'Scholarships'
@@ -52533,10 +52557,10 @@ var _AbilityBuilder = new _casl_ability__WEBPACK_IMPORTED_MODULE_0__["AbilityBui
 
 /***/ }),
 
-/***/ "./resources/adminapp/js/store/cruds/Levels/index.js":
-/*!***********************************************************!*\
-  !*** ./resources/adminapp/js/store/cruds/Levels/index.js ***!
-  \***********************************************************/
+/***/ "./resources/adminapp/js/store/cruds/Degrees/index.js":
+/*!************************************************************!*\
+  !*** ./resources/adminapp/js/store/cruds/Degrees/index.js ***!
+  \************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -52573,7 +52597,7 @@ var actions = {
     var commit = _ref.commit,
         state = _ref.state;
     commit('setLoading', true);
-    axios.get('levels', {
+    axios.get('degrees', {
       params: state.query
     }).then(function (response) {
       commit('setData', response.data.data);
@@ -52588,7 +52612,7 @@ var actions = {
     var commit = _ref2.commit,
         state = _ref2.state,
         dispatch = _ref2.dispatch;
-    axios["delete"]('levels/' + id).then(function (response) {
+    axios["delete"]('degrees/' + id).then(function (response) {
       dispatch('fetchIndexData');
     })["catch"](function (error) {
       message = error.response.data.message || error.message; // TODO error handling
@@ -52622,10 +52646,10 @@ var mutations = {
 
 /***/ }),
 
-/***/ "./resources/adminapp/js/store/cruds/Levels/single.js":
-/*!************************************************************!*\
-  !*** ./resources/adminapp/js/store/cruds/Levels/single.js ***!
-  \************************************************************/
+/***/ "./resources/adminapp/js/store/cruds/Degrees/single.js":
+/*!*************************************************************!*\
+  !*** ./resources/adminapp/js/store/cruds/Degrees/single.js ***!
+  \*************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -52644,7 +52668,7 @@ function initialState() {
   };
 }
 
-var route = 'levels';
+var route = 'degrees';
 var getters = {
   entry: function entry(state) {
     return state.entry;
@@ -54359,8 +54383,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _cruds_Users_single__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./cruds/Users/single */ "./resources/adminapp/js/store/cruds/Users/single.js");
 /* harmony import */ var _cruds_Universities__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./cruds/Universities */ "./resources/adminapp/js/store/cruds/Universities/index.js");
 /* harmony import */ var _cruds_Universities_single__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./cruds/Universities/single */ "./resources/adminapp/js/store/cruds/Universities/single.js");
-/* harmony import */ var _cruds_Levels__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./cruds/Levels */ "./resources/adminapp/js/store/cruds/Levels/index.js");
-/* harmony import */ var _cruds_Levels_single__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./cruds/Levels/single */ "./resources/adminapp/js/store/cruds/Levels/single.js");
+/* harmony import */ var _cruds_Degrees__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./cruds/Degrees */ "./resources/adminapp/js/store/cruds/Degrees/index.js");
+/* harmony import */ var _cruds_Degrees_single__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./cruds/Degrees/single */ "./resources/adminapp/js/store/cruds/Degrees/single.js");
 /* harmony import */ var _cruds_Scholarships__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./cruds/Scholarships */ "./resources/adminapp/js/store/cruds/Scholarships/index.js");
 /* harmony import */ var _cruds_Scholarships_single__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./cruds/Scholarships/single */ "./resources/adminapp/js/store/cruds/Scholarships/single.js");
 
@@ -54375,6 +54399,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+ // import LevelsIndex from './cruds/Levels'
+// import LevelsSingle from './cruds/Levels/single'
 
 
 
@@ -54391,8 +54417,10 @@ var debug = "development" !== 'production';
     UsersSingle: _cruds_Users_single__WEBPACK_IMPORTED_MODULE_8__["default"],
     UniversitiesIndex: _cruds_Universities__WEBPACK_IMPORTED_MODULE_9__["default"],
     UniversitiesSingle: _cruds_Universities_single__WEBPACK_IMPORTED_MODULE_10__["default"],
-    LevelsIndex: _cruds_Levels__WEBPACK_IMPORTED_MODULE_11__["default"],
-    LevelsSingle: _cruds_Levels_single__WEBPACK_IMPORTED_MODULE_12__["default"],
+    DegreesIndex: _cruds_Degrees__WEBPACK_IMPORTED_MODULE_11__["default"],
+    DegreesSingle: _cruds_Degrees_single__WEBPACK_IMPORTED_MODULE_12__["default"],
+    // LevelsIndex,
+    // LevelsSingle,
     ScholarshipsIndex: _cruds_Scholarships__WEBPACK_IMPORTED_MODULE_13__["default"],
     ScholarshipsSingle: _cruds_Scholarships_single__WEBPACK_IMPORTED_MODULE_14__["default"]
   },

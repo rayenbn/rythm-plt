@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Client\Startup;
 use Illuminate\Http\Request;
+use Spatie\QueryBuilder\QueryBuilder;
+use Spatie\QueryBuilder\AllowedFilter;
 
 class StartupsController extends Controller
 {
@@ -16,7 +18,15 @@ class StartupsController extends Controller
      */
     public function index()
     {
-        $startups = Startup::all();
+        // $startups = Startup::all();
+        $startups = QueryBuilder::for(Startup::class)
+        ->allowedFilters([
+                'company_name', 
+                AllowedFilter::exact('country'),
+                AllowedFilter::exact('industry'),
+            ])
+        ->get();
+        
         return view('frontend.startups.index', compact('startups'));
     }
 
@@ -115,5 +125,26 @@ class StartupsController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function search(Request $request)
+    {
+
+        $startups = QueryBuilder::for(Startup::class)
+        ->allowedFilters([
+                'company_name', 
+                AllowedFilter::exact('country'),
+                AllowedFilter::exact('industry'),
+            ])
+        ->get();
+
+        // dd($request->all());
+        // $startups = Startup::where([
+        //     ['company_name', 'like', '%'.$request->company_name.'%'],
+        //     ['industry', '=', $request->industry],
+        //     ['country', '=', $request->country],
+        // ])->get();
+
+        return view('frontend.startups.index', compact('startups'));
     }
 }

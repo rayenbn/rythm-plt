@@ -1,5 +1,6 @@
 @extends('layouts.frontend-layout')
 @section('page-css')
+<link rel="stylesheet" href="{{asset('assets/styles/vendor/cropper.min.css')}}">
   <style>
     .profile-pic {
         max-width: 200px;
@@ -42,13 +43,22 @@
         transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
         color: #999;
     }
+    .cover-upload {
+        display: none;
+    }
 </style>
 @endsection
 @section('content')
 <div class="card user-profile o-hidden mb-4" style="box-shadow: unset;">
-    <div class="header-cover" style="background-image: url('../../dist-assets/images/photo-wide-4.jpg');">
-        <button class="btn btn btn-outline-primary m-2" style="position:absolute;right: 10px;display: flex;" type="button">
-            <i class="i-Camera upload-button mr-2"></i> Change cover photo
+    <div class="header-cover" style="background-image: url('../../assets/images/photo-wide-4.jpg');">
+        <!-- <button class="btn btn btn-outline-primary m-2" style="position:absolute;right: 10px;display: flex;z-index: 9999;" type="button">
+            <i class="i-Camera upload-cover-button mr-2"></i> Change cover photo
+            <input name="cover_photo" class="cover-upload" type="file" accept="image/*"/>
+        </button> -->
+        <button class="btn btn btn-outline-primary m-2" 
+            style="position:absolute;right: 10px;display: flex;z-index: 9;" 
+            type="button" data-toggle="modal" data-target=".profile-cover-photo-upload">
+            <i class="i-Camera upload-cover-button mr-2"></i> Change cover photo
         </button>
     </div>
     <!-- <div class="user-info">
@@ -65,7 +75,7 @@
             <img class="profile-pic" src="http://cdn.cutestpaw.com/wp-content/uploads/2012/07/l-Wittle-puppy-yawning.jpg">
             </div>
             <div class="p-image">
-            <i class="i-Camera upload-button"></i>
+                <i class="i-Camera upload-button"></i>
                 <input name="logo" class="file-upload" type="file" accept="image/*"/>
             </div>
         </div>
@@ -271,9 +281,46 @@
     </div>
 </div>
 
+<!--  Large Modal -->
+<div class="modal fade profile-cover-photo-upload" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="img-container o-hidden">
+                            <img class="cropper-main-img img-fluid" src="{{ asset('assets/images/photo-wide-1.jpg') }}" alt="Picture" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <div class="docs-preview clearfix">
+                                <div class="img-preview preview-lg img-fluid"></div>
+                                <div class="img-preview preview-md img-fluid"></div>
+                                <div class="img-preview preview-sm img-fluid"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                <button class="btn btn-primary ml-2" type="button">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--  Small Modal -->
 @endsection
 
 @section('page-js')
+<script src="{{asset('assets/js/vendor/cropper.min.js')}}"></script>
+<script src="{{asset('assets/js/cropper.script.js')}}"></script>
+
 <script>
     $(document).ready(function() {
 
@@ -296,9 +343,13 @@
     });
 
     $(".upload-button").on('click', function() {
-    $(".file-upload").click();
-    
+        $(".file-upload").click();
     });
+    $(".upload-cover-button").on('click', function() {
+        $(".cover-upload").click();
     });
+
+    });
+
 </script>
 @endsection
