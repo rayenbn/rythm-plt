@@ -1,49 +1,71 @@
 @extends('layouts.frontend-layout')
 @section('page-css')
-  <style>
-  .profile-pic {
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.min.css"
+    />
+<style>
+    .profile-pic {
         max-width: 200px;
         max-height: 200px;
         display: block;
     }
 
-    .file-upload {
+    .profile-image-upload {
         display: none;
+    }
+    .circle {
+        border-radius: 1000px !important;
+        overflow: hidden;
+        width: 128px;
+        height: 128px;
+        border: 8px solid rgb(236 235 235 / 70%);
+        position: relative;
+        /* top: 72px; */
+    }
+    img {
+        max-width: 100%;
+        height: auto;
     }
     .p-image {
         position: absolute;
-        top: 70px;
-        left: 53%;
-        color: #666666;
+        bottom: 0;
+        right: 16px;
         transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+        color: #10163a;
+        background-color: #dddddd;
+        padding: 0px 5px;
+        padding-top: 6px;
+        border-radius: 20px;
     }
     .p-image:hover {
-        transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+         transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
     }
-    .upload-button {
+    .upload-profile-image-button {
         font-size: 1.4em;
         font-weight: 600;
     }
 
-    .upload-button:hover {
-    transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
-    color: #999;
+    .upload-profile-image-button:hover {
+        transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+        color: #999;
     }
-    </style>
+    .cover-upload {
+        display: none;
+    }
+</style>
 @endsection
 @section('content')
 <div class="card user-profile o-hidden mb-4 " style="box-shadow: unset;">
-    <div class="header-cover" style="background-image: url('../../assets/images/photo-wide-4.jpg')"></div>
-    <!-- <div class="user-info" style="position: relative;">
-        <img class="profile-picture avatar-lg mb-2" src="{{ asset('frontend/images/faces/1.jpg') }}" alt="">
-        <div class="p-image">
-            <i class="i-Camera upload-button"></i>
-            <input name="logo" class="file-upload" type="file" accept="image/*"/>
-        </div>
-        <p class="m-0 text-24">{{ ucfirst($startup->company_name) }}</p>
-        <p class="text-muted mb-4">{{ $startup->country }}</p>
-    </div> -->
-    <!-- <button class="btn btn-outline-danger m-1 float-rigth col-4" type="button">Follow</button> -->
+    <div class="header-cover" id="startup-cover" style="background-image: url('/{{ $startup->cover_photo }}')">
+        <button class="btn btn btn-outline-primary upload-cover-button m-2" style="position:absolute;right: 10px;display: flex;z-index: 9;" type="button">
+            <i class="i-Camera mr-2"></i> Change cover photo
+        </button>
+        <input name="cover_photo" class="cover-upload" id="cover-upload" type="file" accept="image/*"/>
+        <input name="id"  value="{{ $startup->id }}" type="hidden"/>
+    </div>
     
 </div>
 
@@ -51,16 +73,23 @@
     <div class="col-lg-10 col-md-10 mb-4">
         <div class="card mb-4" style="box-shadow: unset;">
             <div class="row no-gutters">
-                    <div class="mx-4" style="width: 100x">
-                        <img class="rounded-circle " src="{{ asset('frontend/images/faces/1.jpg') }}" alt="">
+                    <div class="mx-4" style="position: relative;width: 100x">
+                        <img class="rounded-circle " src="/{{ $startup->profile_photo }}" alt="">
+                        <div class="p-image">
+                            <i class="i-Camera upload-profile-image-button"></i>
+                            <input name="logo" class="profile-image-upload" id="profile-image-upload" type="file" accept="image/*"/>
+                        </div>
                     </div>
+
                     <div class="col-xs-12 " style="display: grid;align-content: center;">
                         <p class="ml-4 mr-0 mb-0  text-24">{{ ucfirst($startup->company_name) }}</p>
                         <p class="text-muted ml-4 mb-4">{{ $startup->country }}</p>
                      </div>
             </div>
+            <!-- <button class="btn btn-raised btn-raised-secondary m-1" 
+                style="position:absolute;right: 10px;bottom: 0;display: flex;z-index: 9;" 
+                type="button">Secondary</button> -->
         </div>
-                <button class="btn btn-raised btn-raised-secondary m-1" type="button">Secondary</button>
     </div>
 </div>
 
@@ -301,31 +330,86 @@
         </div>
     </div>
 </div>
+
+<!-- Cover photo upload -->
+<div class="modal fade" id="cover_image_modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Crop Image Before Upload</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="img-container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <img src="" id="cover_image" />
+                        </div>
+                        <!-- <div class="col-md-4">
+                            <div class="preview"></div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="crop-cover-image" class="btn btn-primary">Crop</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>		
+<!-- Cover photo upload Ends-->
+
+<!-- profile photo upload -->
+<div class="modal fade" id="profile_image_modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Crop Image Before Upload</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="img-container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <img src="" id="profile_image" />
+                        </div>
+                        <!-- <div class="col-md-4">
+                            <div class="preview"></div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="crop-portfolio-image" class="btn btn-primary">Crop</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>		
+<!-- profile photo upload Ends-->
 @endsection
 @section('page-js')
+
+<script src="{{asset('assets/js/startup-cropper.script.js')}}"></script>
+
 <script>
-$(document).ready(function() {
+    $(document).ready(function() {
 
-    var readURL = function(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
+    $(".upload-profile-image-button").on('click', function() {
+        $(".profile-image-upload").click();
+    });
 
-            reader.onload = function (e) {
-                $('.profile-pic').attr('src', e.target.result);
-            }
+    $(".upload-cover-button").on('click', function() {
+        $(".cover-upload").click();
+    });
 
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
+    });
 
-
-$(".file-upload").on('change', function(){
-    readURL(this);
-});
-
-$(".upload-button").on('click', function() {
-   $(".file-upload").click();
-});
-});
 </script>
+
 @endsection

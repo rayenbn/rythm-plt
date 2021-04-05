@@ -28,10 +28,10 @@ class Client extends Authenticatable implements HasMedia
         'password',
     ];
 
-    protected $appends = [
-        'profile_photo',
-        'cover_picture',
-    ];
+    // protected $appends = [
+    //     'profile_photo',
+    //     'cover_picture',
+    // ];
 
     protected $dates = [
         'email_verified_at',
@@ -42,6 +42,8 @@ class Client extends Authenticatable implements HasMedia
 
     protected $fillable = [
         'name',
+        'cover_photo',
+        'profile_photo',
         'email',
         'email_verified_at',
         'password',
@@ -91,46 +93,46 @@ class Client extends Authenticatable implements HasMedia
         return $this->hasMany(Startup::class);
     }
 
-    public function registerMediaConversions(Media $media = null): void
-    {
-        $thumbnailWidth  = 50;
-        $thumbnailHeight = 50;
+    // public function registerMediaConversions(Media $media = null): void
+    // {
+    //     $thumbnailWidth  = 50;
+    //     $thumbnailHeight = 50;
 
-        $thumbnailPreviewWidth  = 120;
-        $thumbnailPreviewHeight = 120;
+    //     $thumbnailPreviewWidth  = 120;
+    //     $thumbnailPreviewHeight = 120;
 
-        $this->addMediaConversion('thumbnail')
-            ->width($thumbnailWidth)
-            ->height($thumbnailHeight)
-            ->fit('crop', $thumbnailWidth, $thumbnailHeight);
-        $this->addMediaConversion('preview_thumbnail')
-            ->width($thumbnailPreviewWidth)
-            ->height($thumbnailPreviewHeight)
-            ->fit('crop', $thumbnailPreviewWidth, $thumbnailPreviewHeight);
-    }
+    //     $this->addMediaConversion('thumbnail')
+    //         ->width($thumbnailWidth)
+    //         ->height($thumbnailHeight)
+    //         ->fit('crop', $thumbnailWidth, $thumbnailHeight);
+    //     $this->addMediaConversion('preview_thumbnail')
+    //         ->width($thumbnailPreviewWidth)
+    //         ->height($thumbnailPreviewHeight)
+    //         ->fit('crop', $thumbnailPreviewWidth, $thumbnailPreviewHeight);
+    // }
 
-    public function getProfilePhotoAttribute()
-    {
-        return $this->getMedia('profile_photo')->map(function ($item) {
-            $media                      = $item->toArray();
-            $media['url']               = $item->getUrl();
-            $media['thumbnail']         = $item->getUrl('thumbnail');
-            $media['preview_thumbnail'] = $item->getUrl('preview_thumbnail');
+    // public function getProfilePhotoAttribute()
+    // {
+    //     return $this->getMedia('profile_photo')->map(function ($item) {
+    //         $media                      = $item->toArray();
+    //         $media['url']               = $item->getUrl();
+    //         $media['thumbnail']         = $item->getUrl('thumbnail');
+    //         $media['preview_thumbnail'] = $item->getUrl('preview_thumbnail');
 
-            return $media;
-        });
-    }
+    //         return $media;
+    //     });
+    // }
 
-    public function getCoverPictureAttribute()
-    {
-        return $this->getMedia('profile_photo')->map(function ($item) {
-            $media                      = $item->toArray();
-            $media['url']               = $item->getUrl();
-            $media['thumbnail']         = $item->getUrl('thumbnail');
-            $media['preview_thumbnail'] = $item->getUrl('preview_thumbnail');
+    // public function getCoverPictureAttribute()
+    // {
+    //     return $this->getMedia('profile_photo')->map(function ($item) {
+    //         $media                      = $item->toArray();
+    //         $media['url']               = $item->getUrl();
+    //         $media['thumbnail']         = $item->getUrl('thumbnail');
+    //         $media['preview_thumbnail'] = $item->getUrl('preview_thumbnail');
 
-            return $media;
-        });
-    }
+    //         return $media;
+    //     });
+    // }
  
 }

@@ -14,7 +14,7 @@
         display: block;
     }
 
-    .file-upload {
+    .profile-image-upload {
         display: none;
     }
     .circle {
@@ -32,20 +32,24 @@
     }
     .p-image {
         position: absolute;
-        top: 145px;
-        left: 58%;
-        color: #666666;
+        bottom: 0;
+        right: 16px;
         transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+        color: #10163a;
+        background-color: #dddddd;
+        padding: 0px 5px;
+        padding-top: 6px;
+        border-radius: 20px;
     }
     .p-image:hover {
          transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
     }
-    .upload-button {
+    .upload-profile-image-button {
         font-size: 1.4em;
         font-weight: 600;
     }
 
-    .upload-button:hover {
+    .upload-profile-image-button:hover {
         transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
         color: #999;
     }
@@ -56,16 +60,17 @@
 @endsection
 @section('content')
 <div class="card user-profile o-hidden mb-4" style="box-shadow: unset;">
-    <div class="header-cover" style="background-image: url('../../assets/images/photo-wide-4.jpg');">
-        <!-- <button class="btn btn btn-outline-primary m-2" style="position:absolute;right: 10px;display: flex;z-index: 9999;" type="button">
-            <i class="i-Camera upload-cover-button mr-2"></i> Change cover photo
-            <input name="cover_photo" class="cover-upload" type="file" accept="image/*"/>
-        </button> -->
-        <button class="btn btn btn-outline-primary m-2" 
+    <div class="header-cover" style="background-image: url('{{ $client->cover_photo }}')">
+        <button class="btn btn btn-outline-primary upload-cover-button m-2" style="position:absolute;right: 10px;display: flex;z-index: 9;" type="button">
+            <i class="i-Camera mr-2"></i> Change cover photo
+        </button>
+        <input name="cover_photo" class="cover-upload" id="cover-upload" type="file" accept="image/*"/>
+        <!-- <button class="btn btn btn-outline-primary m-2" 
             style="position:absolute;right: 10px;display: flex;z-index: 9;" 
             type="button" data-toggle="modal" data-target=".profile-cover-photo-upload">
             <i class="i-Camera upload-cover-button mr-2"></i> Change cover photo
-        </button>
+        </button> -->
+        
     </div>
     <!-- <div class="user-info">
         <img class="profile-picture avatar-lg mb-2" src="{{ asset('frontend/images/faces/1.jpg') }}" alt="">
@@ -73,18 +78,23 @@
         <p class="text-muted mb-4">{{ $client->profession }}</p>
     </div> -->
     <!-- <button class="btn btn-outline-danger m-1 float-rigth col-4" type="button">Follow</button> -->
-
-    <div class="row justify-content-center" >
-        <div class="small-12 medium-2 large-2 columns">
+    <div class="user-info">
+    <div class=" justify-content-center" >
+        <div class="small-12 medium-2 large-2 columns" style="position: relative;">
             <div class="circle">
             <!-- User Profile Image -->
-            <img class="profile-pic" src="http://cdn.cutestpaw.com/wp-content/uploads/2012/07/l-Wittle-puppy-yawning.jpg">
+            <img class="profile-pic" src="{{ $client->profile_photo }}">
             </div>
             <div class="p-image">
-                <i class="i-Camera upload-button"></i>
-                <input name="logo" class="file-upload" type="file" accept="image/*"/>
+                <i class="i-Camera upload-profile-image-button"></i>
+                <input name="logo" class="profile-image-upload" id="profile-image-upload" type="file" accept="image/*"/>
             </div>
         </div>
+        <div class="text-center">
+        <p class="m-0 text-24">{{ ucfirst($client->name) }}</p>
+        <p class="text-muted mb-4">{{ ucfirst($client->profession) }}</p>
+        </div>
+    </div>
     </div>
 
 </div>
@@ -287,137 +297,87 @@
     </div>
 </div>
 
-<!--  Large Modal -->
-<div class="modal fade profile-cover-photo-upload" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+
+
+<!-- Cover photo upload -->
+<div class="modal fade" id="cover_image_modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h5 class="modal-title">Crop Image Before Upload</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
             </div>
             <div class="modal-body">
-                <!-- <div class="row">
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="card-title">Image Cropper</div>
-                                <div class="row">
-                                    <div class="col-md-9">
-                                        <div class="img-container o-hidden">
-                                            <img class="cropper-main-img img-fluid" src="{{asset('assets/images/photo-wide-1.jpg')}}" alt="Picture">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <div class="docs-preview clearfix">
-                                                <div class="img-preview preview-lg img-fluid"></div>
-                                                <div class="img-preview preview-md img-fluid"></div>
-                                                <div class="img-preview preview-sm img-fluid"></div>
-                                            </div>
-                                        </div>
-                                        <div class="docs-data">
-                                            <fieldset class="form-group">
-                                                <div class="input-group">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text">X</span>
-                                                    </div>
-                                                    <input type="number" class="form-control cropper-main-dataX" placeholder="x">
-                                                    <div class="input-group-append">
-                                                        <span class="input-group-text">px</span>
-                                                    </div>
-                                                </div>
-                                            </fieldset>
-
-                                            <fieldset class="form-group">
-                                                <div class="input-group">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text">Y</span>
-                                                    </div>
-                                                    <input type="number" class="form-control cropper-main-dataY" placeholder="y">
-                                                    <div class="input-group-append">
-                                                        <span class="input-group-text">px</span>
-                                                    </div>
-                                                </div>
-                                            </fieldset>
-
-                                            <fieldset class="form-group">
-                                                <div class="input-group">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text">Width</span>
-                                                    </div>
-                                                    <input type="number" class="form-control cropper-main-dataWidth" placeholder="width">
-                                                    <div class="input-group-append">
-                                                        <span class="input-group-text">px</span>
-                                                    </div>
-                                                </div>
-                                            </fieldset>
-
-                                            <fieldset class="form-group">
-                                                <div class="input-group">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text">Height</span>
-                                                    </div>
-                                                    <input type="number" class="form-control cropper-main-dataHeight" placeholder="height">
-                                                    <div class="input-group-append">
-                                                        <span class="input-group-text">px</span>
-                                                    </div>
-                                                </div>
-                                            </fieldset>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                <div class="img-container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <img src="" id="cover_image" />
                         </div>
+                        <!-- <div class="col-md-4">
+                            <div class="preview"></div>
+                        </div> -->
                     </div>
-                </div> -->
-                <input type="file" name="fileUpload" id="fileUpload" />
-                <div id="uploadedImage"></div>
-                <hr />
-                <div>
-                <img id="croppedImage" /><br />
-                <button id="cropButton">crop</button>
                 </div>
-                <div id="cropResult"></div>
-
             </div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                <button class="btn btn-primary ml-2" type="button">Save changes</button>
+                <button type="button" id="crop-cover-image" class="btn btn-primary">Crop</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
             </div>
         </div>
     </div>
-</div>
-<!--  Small Modal -->
+</div>		
+<!-- Cover photo upload Ends-->
+
+<!-- profile photo upload -->
+<div class="modal fade" id="profile_image_modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Crop Image Before Upload</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="img-container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <img src="" id="profile_image" />
+                        </div>
+                        <!-- <div class="col-md-4">
+                            <div class="preview"></div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="crop-portfolio-image" class="btn btn-primary">Crop</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>		
+<!-- profile photo upload Ends-->
 @endsection
 
 @section('page-js')
 
-<!-- <script src="{{asset('assets/js/cropper.script.js')}}"></script> -->
+<script src="{{asset('assets/js/profile-cropper.script.js')}}"></script>
 
 <script>
     $(document).ready(function() {
 
-    
-    var readURL = function(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
 
-            reader.onload = function (e) {
-                $('.profile-pic').attr('src', e.target.result);
-            }
+    // $(".profile-image-upload").on('change', function(){
+    //     readURL(this);
+    // });
 
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-
-
-    $(".file-upload").on('change', function(){
-        readURL(this);
+    $(".upload-profile-image-button").on('click', function() {
+        $(".profile-image-upload").click();
     });
 
-    $(".upload-button").on('click', function() {
-        $(".file-upload").click();
-    });
     $(".upload-cover-button").on('click', function() {
         $(".cover-upload").click();
     });
@@ -425,59 +385,5 @@
     });
 
 </script>
-<script>
-    const uploadedImageDiv = document.getElementById("uploadedImage");
-    const fileUpload = document.getElementById("fileUpload");
-    fileUpload.addEventListener("change", getImage, false);
-    let cropper = null;
-    const cropButton = document.getElementById("cropButton");
-    cropButton.addEventListener("click", cropImage);
-    let myGreatImage = null;
-    const croppedImage = document.getElementById("croppedImage");
 
-    function getImage() {
-    console.log("images", this.files[0]);
-    const imageToProcess = this.files[0];
-
-    // display uploaded image
-    let newImg = new Image(imageToProcess.width, imageToProcess.height);
-    newImg.src = imageToProcess;
-    newImg.src = URL.createObjectURL(imageToProcess);
-    newImg.id = "myGreatImage";
-    uploadedImageDiv.style.border = "4px solid #FCB514";
-    uploadedImageDiv.appendChild(newImg);
-    myGreatImage = document.getElementById("myGreatImage");
-
-    processImage();
-    }
-
-    function processImage() {
-        var $dataHeight = 1335;
-        var $dataWidth = 300;
-    cropButton.style.display = "block";
-    cropper = new Cropper(myGreatImage, {
-        // aspectRatio: 1,
-        dragMode: 'move',
-        cropBoxMovable: true,
-        cropBoxResizable: false,
-        crop(event) {
-            // $dataHeight.val(Math.round(event.height));
-            // $dataWidth.val(Math.round(event.width));
-            console.log(
-                Math.round(1335),
-                Math.round(300)
-            );
-            const canvas = this.cropper.getCroppedCanvas();
-            croppedImage.src = canvas.toDataURL("image/png");
-        }
-    });
-    }
-
-    function cropImage() {
-    const imgurl = cropper.getCroppedCanvas().toDataURL();
-    const img = document.createElement("img");
-    img.src = imgurl;
-    document.getElementById("cropResult").appendChild(img);
-    }
-</script>
 @endsection

@@ -17,6 +17,8 @@ class CreateStartupsTable extends Migration
             $table->increments('id');
             $table->string('slug_name')->unique();
             $table->string('company_name', 255)->nullable();
+            $table->string('cover_photo', 255)->nullable();
+            $table->string('profile_photo', 255)->nullable();
             $table->longText('bio')->nullable();
             $table->string('country')->nullable();
             $table->string('office_address')->nullable();

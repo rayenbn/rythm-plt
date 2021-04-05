@@ -4,8 +4,6 @@ $(document).ready(function(){
     var $dataY = $('.cropper-main-dataY');
     var $dataHeight = $('.cropper-main-dataHeight');
     var $dataWidth = $('.cropper-main-dataWidth');
-    // var $dataHeight = 1335;
-    // var $dataWidth = 300;
     var $dataRotate = $('.cropper-main-dataRotate');
     var $dataScaleX = $('.cropper-main-dataScaleX');
     var $dataScaleY = $('.cropper-main-dataScaleY');
@@ -27,4 +25,3 @@ $(document).ready(function(){
 
         
 });
-

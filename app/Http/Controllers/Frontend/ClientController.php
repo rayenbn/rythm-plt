@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Client\Client;
 use Illuminate\Http\Request;
+use Image; //Intervention Image
+use Illuminate\Support\Facades\Storage; //Laravel Filesystem
 
 class ClientController extends Controller
 {
@@ -86,6 +88,96 @@ class ClientController extends Controller
             ]);
 
         return redirect()->back();
+    }
+
+     /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function UploadCoverImage(Request $request)
+    {
+        // abort_unless(\Gate::allows('career_edit'), 403);
+        // dd(auth()->user()->name);
+        if(!auth()->check()) {
+            abort(403);
+        }
+
+        $request->validate([
+            'image' => 'required|string',
+        ]);
+
+        $client = Client::findOrFail(auth()->user()->id);
+
+        $img = $request->image;  // your base64 encoded
+        $img = str_replace('data:image/png;base64,', '', $img);
+        $img = str_replace(' ', '+', $img);
+        // $imageName = auth()->user()->name . 'cover-photo.png';
+
+        if ($request->image) {
+            $image = base64_decode($img);
+            //filename to store
+            $filenametostore = auth()->user()->name.'_'.uniqid().'_cover_photo.png';
+            Storage::put('public/user_profile/'. auth()->user()->id . auth()->user()->name .'/'. $filenametostore, $image);
+            // Storage::put('public/user_profile/'.auth()->user()->id . auth()->user()->name .  '/thumbnail/'. $filenametostore, $image);
+            //Resize image here
+            // $thumbnailpath = 'storage/products/thumbnail/'.$filenametostore;
+            // $img = Image::make($thumbnailpath)->resize(470, 600)->save($thumbnailpath);
+            $path = 'storage/user_profile/'. auth()->user()->id . auth()->user()->name .'/'. $filenametostore;
+        }else {
+            // $path = $client->cover_photo;
+        }
+        // Storage::disk('local')->put($imageName, base64_decode($image));
+        $client->update([
+            "cover_photo" => $path,
+        ]);
+
+        return $client->cover_photo;
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function UploadProfileImage(Request $request)
+    {
+        if(!auth()->check()) {
+            abort(403);
+        }
+
+        $request->validate([
+            'image' => 'required|string',
+        ]);
+
+        $client = Client::findOrFail(auth()->user()->id);
+
+        $img = $request->image;  // your base64 encoded
+        $img = str_replace('data:image/png;base64,', '', $img);
+        $img = str_replace(' ', '+', $img);
+
+        if ($request->image) {
+            $image = base64_decode($img);
+            //filename to store
+            $filenametostore = auth()->user()->name.'_'.uniqid().'_profile_photo.png';
+            Storage::put('public/user_profile/'. auth()->user()->id . auth()->user()->name .'/'. $filenametostore, $image);
+            // Storage::put('public/user_profile/'.auth()->user()->id . auth()->user()->name .  '/thumbnail/'. $filenametostore, $image);
+            //Resize image here
+            // $thumbnailpath = 'storage/products/thumbnail/'.$filenametostore;
+            // $img = Image::make($thumbnailpath)->resize(470, 600)->save($thumbnailpath);
+            $path = 'storage/user_profile/'. auth()->user()->id . auth()->user()->name .'/'. $filenametostore;
+        }else {
+            $path = $client->profile_photo;
+        }
+        $client->update([
+            "profile_photo" => $path,
+        ]);
+
+        return $client->profile_photo;
     }
 
     /**

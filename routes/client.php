@@ -26,8 +26,12 @@ Route::group([
     Route::post('startup/search', 'StartupsController@search')->name('startup.search');
     Route::resource('startup', 'StartupsController');
     Route::post('startup/profile/create', 'StartupsController@createStartup')->name('startup.fastcreate');
-    
+    Route::put('startup/{id}/cover-image/save', 'StartupsController@UploadCoverImage')->name('startup-profile.cover-image.edit');
+    Route::put('startup/{id}/profile-image/save', 'StartupsController@UploadProfileImage')->name('startup-profile.profile-image.edit');
+
     Route::get('/{id}', 'ClientController@show')->name('user-profile');
     Route::put('profile/{client}/personal-info/update', 'ClientController@update')->name('user-profile.edit');
-
+    Route::put('profile/cover-image/save', 'ClientController@UploadCoverImage')->name('user-profile.cover-image.edit');
+    Route::put('profile/profile-image/save', 'ClientController@UploadProfileImage')->name('user-profile.profile-image.edit');
+    
 });
